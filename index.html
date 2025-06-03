@@ -3,99 +3,157 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Interaktywna książka z obrazkami</title>
+<title>Zelený Baran - Menu</title>
 <style>
   body {
-    background-color: #fdf3e7;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #3e2f1c; /* ciemny brąz imitujący skórę */
+    color: #d4af37; /* złoty kolor */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: 'Georgia', serif;
-    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
   }
-  .book {
-    width: 600px;
-    height: 400px;
-    position: relative;
-    perspective: 2000px;
-  }
-  .page {
-    width: 100%;
-    height: 100%;
-    background-color: #fff8ee;
-    border: 1px solid #d8c3a5;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: transform 1s, box-shadow 0.3s, background-color 0.3s;
-    transform-origin: left;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    padding: 30px;
+  .menu-container {
+    background: url('https://www.transparenttextures.com/patterns/soft-wallpaper.png') repeat;
+    background-color: #3e2f1c;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+    width: 700px;
+    padding: 40px 60px;
     box-sizing: border-box;
-    z-index: 1;
-    cursor: pointer;
-    overflow: hidden;
   }
-  .page:hover {
-    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
-    background-color: #fff9f0;
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow:
+       0 0 5px #d4af37,
+       0 0 10px #d4af37,
+       0 0 15px #b8860b,
+       0 0 20px #b8860b;
   }
-  .page.flipped {
-    transform: rotateY(-180deg);
-    z-index: 0;
+  .section {
+    margin-bottom: 30px;
   }
-  .page h2, .page h3 {
-    margin-top: 0;
+  .section h2 {
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 8px;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
   }
-  .ornament {
-    display: block;
-    margin: 10px 0 20px 0;
-    max-width: 120px;
-    border: 2px solid #d8c3a5;
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
   }
-  .decorative-line {
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(to right, #d8c3a5, #fdf3e7, #d8c3a5);
-    margin: 20px 0;
-    border-radius: 2px;
+  .item img {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-right: 20px;
+    border: 2px solid #d4af37;
+    box-shadow: 0 2px 6px rgba(212,175,55,0.6);
+  }
+  .item-info {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .item-name {
+    font-weight: 600;
+  }
+  .item-price {
+    font-weight: 600;
+    margin-left: 15px;
+    min-width: 50px;
+    text-align: right;
   }
 </style>
 </head>
 <body>
 
-<div class="book">
-  <div class="page" id="page1">
-    <h2>Strona 1</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Crystal_Project_flower.png/120px-Crystal_Project_flower.png" alt="Ornament 1" class="ornament" />
-    <p>Witaj w interaktywnej książce z ozdobnikami! Kliknij, aby przewrócić stronę.</p>
-    <div class="decorative-line"></div>
+<div class="menu-container">
+  <h1>Zelený Baran</h1>
+
+  <div class="section">
+    <h2>Przystawki</h2>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2017/03/10/12/10/bruschetta-2137966_1280.jpg" alt="Bruschetta z pomidorami" />
+      <div class="item-info">
+        <div class="item-name">Bruschetta z pomidorami</div>
+        <div class="item-price">18 zł</div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2016/06/24/10/47/greek-salad-1470982_1280.jpg" alt="Sałatka grecka" />
+      <div class="item-info">
+        <div class="item-name">Sałatka grecka</div>
+        <div class="item-price">22 zł</div>
+      </div>
+    </div>
   </div>
-  <div class="page" id="page2" style="z-index: 0;">
-    <h2>Strona 2</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Crystal_Project_star.png/120px-Crystal_Project_star.png" alt="Ornament 2" class="ornament" />
-    <p>To jest druga strona z dekoracyjnym obrazkiem. Kliknij, aby wrócić.</p>
-    <div class="decorative-line"></div>
+
+  <div class="section">
+    <h2>Dania główne</h2>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/03/53/chicken-1869570_1280.jpg" alt="Pierś z kurczaka w sosie śmietanowym" />
+      <div class="item-info">
+        <div class="item-name">Pierś z kurczaka w sosie śmietanowym</div>
+        <div class="item-price">38 zł</div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/pork-1238244_1280.jpg" alt="Polędwiczki wieprzowe z grzybami" />
+      <div class="item-info">
+        <div class="item-name">Polędwiczki wieprzowe z grzybami</div>
+        <div class="item-price">42 zł</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Napoje</h2>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2015/07/10/18/46/coffee-839870_1280.jpg" alt="Kawa espresso" />
+      <div class="item-info">
+        <div class="item-name">Kawa espresso</div>
+        <div class="item-price">10 zł</div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/03/53/tea-1869581_1280.jpg" alt="Herbata zielona" />
+      <div class="item-info">
+        <div class="item-name">Herbata zielona</div>
+        <div class="item-price">8 zł</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Desery</h2>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2015/04/08/13/13/cupcake-712793_1280.jpg" alt="Babeczka z owocami" />
+      <div class="item-info">
+        <div class="item-name">Babeczka z owocami</div>
+        <div class="item-price">15 zł</div>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://cdn.pixabay.com/photo/2017/03/20/00/00/cake-2152594_1280.jpg" alt="Sernik klasyczny" />
+      <div class="item-info">
+        <div class="item-name">Sernik klasyczny</div>
+        <div class="item-price">18 zł</div>
+      </div>
+    </div>
   </div>
 </div>
-
-<script>
-  const page1 = document.getElementById('page1');
-  const page2 = document.getElementById('page2');
-
-  page1.addEventListener('click', () => {
-    page1.classList.add('flipped');
-    page2.style.zIndex = 1;
-  });
-
-  page2.addEventListener('click', () => {
-    page1.classList.remove('flipped');
-    page2.style.zIndex = 0;
-  });
-</script>
 
 </body>
 </html>
