@@ -24,36 +24,42 @@
       box-sizing: border-box;
       padding: 40px;
       gap: 20px;
-      position: relative;
     }
     .page {
       flex: 1;
+      position: relative;
+      padding: 20px;
+      box-sizing: border-box;
+      background: #fff8ee;
+      border-radius: 15px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
     }
-    .divider {
+    /* Linia oddzielająca między stronami */
+    .page:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      right: 0;
       width: 4px;
-      background: linear-gradient(to bottom, #d8c3a5, #fdf3e7, #d8c3a5);
+      height: 80%;
+      background: linear-gradient(to bottom, #c9b18a, #fff8ee, #c9b18a);
       border-radius: 2px;
-      margin: 0 10px;
     }
     .header {
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 30px;
-      cursor: pointer;
     }
     .header img {
       height: 80px;
       margin-right: 15px;
-      object-fit: contain;
-      width: 80px;
     }
     .header h1 {
       font-size: 36px;
       color: #7a4e2d;
       margin: 0;
       letter-spacing: 2px;
-      user-select: none;
     }
     .section h2 {
       border-bottom: 2px solid #c9b18a;
@@ -70,11 +76,11 @@
     .item img {
       width: 100px;
       height: 70px;
-      object-fit: cover;
+      object-fit: contain; /* ważna zmiana - cały obrazek bez przycinania */
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       margin-right: 20px;
-      user-select: none;
+      background-color: #fff8ee; /* tło pod obrazkiem */
     }
     .item-info {
       display: flex;
@@ -106,9 +112,9 @@
 <body>
   <div class="book">
 
-    <!-- Left Page: Main Dishes -->
+    <!-- Lewa strona: Dania główne -->
     <div class="page">
-      <div class="header" id="logo-container">
+      <div class="header">
         <img src="images/baran.png" alt="Logo Zelený Baran" />
         <h1>Zelený Baran</h1>
       </div>
@@ -117,7 +123,7 @@
         <h2>Main Dishes</h2>
 
         <div class="item">
-          <img src="images/grilled-vegetables.jpg" alt="Grilled Vegetables" />
+          <img src="images/grilled.png" alt="Grilled Vegetables" />
           <div class="item-info">
             <div class="item-name">Grilled Vegetables</div>
             <div class="item-price">34 zł</div>
@@ -125,7 +131,7 @@
         </div>
 
         <div class="item">
-          <img src="images/mutton-vegetables.jpg" alt="Mutton with Grilled Vegetables" />
+          <img src="images/mutton.png" alt="Mutton with Grilled Vegetables" />
           <div class="item-info">
             <div class="item-name">Mutton with Grilled Vegetables</div>
             <div class="item-price">46 zł</div>
@@ -133,7 +139,7 @@
         </div>
 
         <div class="item">
-          <img src="images/mutton-kebab.jpg" alt="Kebab with Mutton" />
+          <img src="images/mutton.png" alt="Kebab with Mutton" />
           <div class="item-info">
             <div class="item-name">Kebab with Mutton</div>
             <div class="item-price">40 zł</div>
@@ -145,22 +151,18 @@
         <p>
           <strong>Dawid Domagalski</strong> – the undisputed sales master at Zelený Baran!<br />
           So good that other companies fight over him like the last kebab on the plate.<br />
-          Official holder of the certificate <em>"Crazy Kebab Salesman 2024"</em>.<br />
-          Best salesperson and the most crafty cook in town – and the backup chef, just in case the main one gets food poisoning! 🙂
+          
         </p>
       </div>
     </div>
 
-    <!-- Divider Line -->
-    <div class="divider"></div>
-
-    <!-- Right Page: Drinks -->
+    <!-- Prawa strona: Napoje -->
     <div class="page">
       <div class="section">
         <h2>Drinks</h2>
 
         <div class="item">
-          <img src="images/coca.png" alt="Coca-Cola" />
+          <img src="images/coce.png" alt="Coca-Cola" />
           <div class="item-info">
             <div class="item-name">Coca-Cola</div>
             <div class="item-price">15 zł</div>
@@ -186,21 +188,5 @@
     </div>
 
   </div>
-
-  <audio id="hover-sound" src="images/baran.wav" preload="auto"></audio>
-
-  <script>
-    const logoContainer = document.getElementById('logo-container');
-    const hoverSound = document.getElementById('hover-sound');
-
-    logoContainer.addEventListener('mouseenter', () => {
-      hoverSound.currentTime = 0;
-      hoverSound.play();
-    });
-    logoContainer.addEventListener('mouseleave', () => {
-      hoverSound.pause();
-      hoverSound.currentTime = 0;
-    });
-  </script>
 </body>
 </html>
