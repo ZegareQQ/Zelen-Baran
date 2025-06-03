@@ -15,7 +15,7 @@
       margin: 0;
     }
     .book {
-      width: 1400px;
+      width: 1400px; /* szerzej dla dwóch stron */
       display: flex;
       background: #fff8ee;
       border: 10px solid #c9b18a;
@@ -33,6 +33,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 30px;
+      cursor: pointer; /* pokazuje, że można najechać */
     }
     .header img {
       height: 80px;
@@ -59,7 +60,9 @@
     .item img {
       width: 100px;
       height: 70px;
-      object-fit: cover;
+      object-fit: contain;
+      background-color: #fff;
+      padding: 5px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       margin-right: 20px;
@@ -89,18 +92,14 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       line-height: 1.5;
     }
-    .decorative-line {
-      width: 8px;
-      background: linear-gradient(to bottom, #c9b18a, #fff8ee, #c9b18a);
-      border-radius: 4px;
-    }
   </style>
 </head>
 <body>
   <div class="book">
-    <!-- Left Page -->
+
+    <!-- Left Page: Main Dishes -->
     <div class="page">
-      <div class="header">
+      <div class="header" id="logo-area">
         <img src="images/baran.png" alt="Logo Zelený Baran" />
         <h1>Zelený Baran</h1>
       </div>
@@ -143,10 +142,7 @@
       </div>
     </div>
 
-    <!-- Decorative Separator -->
-    <div class="decorative-line"></div>
-
-    <!-- Right Page -->
+    <!-- Right Page: Drinks -->
     <div class="page">
       <div class="section">
         <h2>Drinks</h2>
@@ -176,17 +172,22 @@
         </div>
       </div>
     </div>
+
   </div>
 
-  <!-- DŹWIĘK PO NAJECHANIU -->
-  <audio id="sheepSound" src="images/baran.wav" preload="auto"></audio>
-  <script>
-    const audio = document.getElementById("sheepSound");
-    const logoArea = document.querySelector(".header");
+  <audio id="baran-sound" src="images/baran.wav" preload="auto"></audio>
 
-    logoArea.addEventListener("mouseenter", () => {
-      audio.currentTime = 0;
-      audio.play();
+  <script>
+    const logoArea = document.getElementById('logo-area');
+    const sound = document.getElementById('baran-sound');
+
+    logoArea.addEventListener('mouseenter', () => {
+      sound.currentTime = 0;  // start od początku
+      sound.play();
+    });
+    logoArea.addEventListener('mouseleave', () => {
+      sound.pause();
+      sound.currentTime = 0;
     });
   </script>
 </body>
