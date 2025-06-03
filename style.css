@@ -1,0 +1,36 @@
+body {
+  background-color: #fdf3e7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Georgia', serif;
+}
+.book {
+  width: 600px;
+  height: 400px;
+  position: relative;
+  perspective: 2000px;
+}
+.page {
+  width: 100%;
+  height: 100%;
+  background-color: #fff8ee;
+  border: 1px solid #d8c3a5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 1s;
+  transform-origin: left;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  padding: 30px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+.page h2, .page h3 {
+  margin-top: 0;
+}
+.page.flipped {
+  transform: rotateY(-180deg);
+  z-index: 0;
+}
