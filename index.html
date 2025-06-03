@@ -1,222 +1,171 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Menu Restauracji Zelený Baran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zelený Baran - Menu</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
 
     body {
-      background-color: #000000;
-      font-family: 'Times New Roman', Times, serif;
       margin: 0;
-      padding: 0;
+      background-color: #000;
+      font-family: 'Times New Roman', serif;
       color: white;
       overflow-x: hidden;
     }
+
     .book {
       width: 90vw;
-      max-width: 600px;
+      max-width: 700px;
       margin: 30px auto;
-      perspective: 1500px;
+      perspective: 2000px;
       position: relative;
-      height: 420px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      border-radius: 10px;
-      background-color: #111;
+      height: 480px;
     }
+
     .page {
       width: 100%;
       height: 100%;
       position: absolute;
       top: 0;
       left: 0;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.7);
-      color: white;
+      border-radius: 12px;
+      transition: transform 1s ease;
+      backface-visibility: hidden;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.8);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 30px 25px;
-      backface-visibility: hidden;
-      transition: transform 0.8s ease;
-      font-size: 1.2rem;
-      text-shadow: 0 0 5px rgba(0,0,0,0.8);
-      overflow: hidden;
-      background-blend-mode: multiply;
+      padding: 40px;
+      text-align: center;
     }
 
-    /* Okładka z Twoim zdjęciem */
     .cover {
-      background-color: #000000;
+      background-color: #111;
       background-image: url('images/490975193_9653794848035005_5880450732372020113_n.png');
-      background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-      font-size: 2.2rem;
-      font-weight: bold;
-      box-shadow: 0 0 25px #003300;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-      letter-spacing: 0.06em;
-      color: #aaffaa;
-      text-shadow:
-        1px 1px 4px rgba(0, 50, 0, 0.8),
-        0 0 10px #00cc00;
+      color: #fff;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #000;
       position: relative;
     }
     .cover::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-color: rgba(0,0,0,0.5);
-      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
       z-index: 0;
     }
-    .cover > * {
-      position: relative;
+    .cover * {
       z-index: 1;
+      position: relative;
     }
 
-    /* Tło stron z jedzeniem */
-    .page-food1 {
-      background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80');
+    .page-content {
+      background-color: #222;
+      background-image: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=800&q=80');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      filter: brightness(0.4);
-      position: relative;
-    }
-    .page-food1 > * {
-      position: relative;
-      z-index: 1;
+      color: #fff;
+      font-size: 1.3rem;
+      text-shadow: 1px 1px 4px #000;
     }
 
-    .page-food2 {
-      background-image: url('https://images.unsplash.com/photo-1543352634-5f57a9c1b8d0?auto=format&fit=crop&w=600&q=80');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      filter: brightness(0.4);
-      position: relative;
-    }
-    .page-food2 > * {
-      position: relative;
-      z-index: 1;
+    .menu-section {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
     }
 
-    /* Tylna okładka */
-    .back-cover {
-      background-color: #004000;
-      border-radius: 8px;
-      box-shadow: 0 0 20px #002200;
-      font-size: 1.1rem;
+    .menu-section h2 {
+      margin-top: 0;
+    }
+
+    .menu-item {
+      margin: 10px 0;
+    }
+
+    .menu-item span {
+      float: right;
+    }
+
+    .contact-page {
+      background-color: #002200;
+    }
+
+    .buttons {
       text-align: center;
-      padding: 40px 25px;
-      line-height: 1.5;
-      letter-spacing: 0.03em;
-    }
-
-    /* Animacja przewijania */
-    .page.next {
-      transform: rotateY(-180deg);
-      z-index: 0;
-    }
-    .page.current {
-      z-index: 2;
-      transform: rotateY(0deg);
-    }
-
-    /* Przycisk */
-    .btn {
       margin-top: 20px;
-      padding: 12px 28px;
-      background-color: #006400;
+    }
+
+    button {
+      background: #006400;
+      color: white;
+      padding: 10px 20px;
       border: none;
       border-radius: 6px;
-      color: white;
-      font-family: 'Times New Roman', Times, serif;
+      margin: 0 10px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 3px 7px rgba(0,100,0,0.8);
-    }
-    .btn:hover:not(:disabled) {
-      background-color: #004000;
-      box-shadow: 0 5px 15px rgba(0,70,0,0.9);
-    }
-    .btn:disabled {
-      background-color: #003300;
-      cursor: not-allowed;
-      box-shadow: none;
+      font-family: 'Times New Roman', serif;
     }
 
+    button:disabled {
+      background: #333;
+      cursor: not-allowed;
+    }
   </style>
 </head>
 <body>
-
   <div class="book">
-    <!-- Okładka -->
     <div class="page cover current" id="page1">
-      <h1>Menu Restauracji<br>Zelený Baran</h1>
+      <h1>Zelený Baran</h1>
+      <p>Restaurant Menu</p>
     </div>
-    <!-- Dania główne -->
-    <div class="page page-food1 next" id="page2" style="transform: rotateY(-180deg);">
-      <h2>Dania główne</h2>
-      <ul>
-        <li>Grillowane warzywa</li>
-        <li>Baranina z grillowanymi warzywami</li>
-        <li>Kebab z baraniną</li>
-      </ul>
+    <div class="page page-content next" id="page2">
+      <div class="menu-section">
+        <h2>Main Dishes</h2>
+        <div class="menu-item">Grilled Vegetables <span>25.00 PLN</span></div>
+        <div class="menu-item">Mutton with Grilled Vegetables <span>49.00 PLN</span></div>
+        <div class="menu-item">Mutton Kebab <span>42.00 PLN</span></div>
+      </div>
     </div>
-    <!-- Napoje -->
-    <div class="page page-food2 next" id="page3" style="transform: rotateY(-180deg);">
-      <h2>Napoje gazowane</h2>
-      <ul>
-        <li>Coca Cola</li>
-        <li>Sprite</li>
-        <li>Fanta</li>
-        <li>Dr Pepper</li>
-      </ul>
+    <div class="page page-content next" id="page3" style="background-image: url('https://images.unsplash.com/photo-1612197528440-9d3ee1cd91f7?auto=format&fit=crop&w=800&q=80');">
+      <div class="menu-section">
+        <h2>Soft Drinks</h2>
+        <div class="menu-item">Coca-Cola <span>8.00 PLN</span></div>
+        <div class="menu-item">Sprite <span>8.00 PLN</span></div>
+        <div class="menu-item">Fanta <span>8.00 PLN</span></div>
+        <div class="menu-item">Dr Pepper <span>9.00 PLN</span></div>
+      </div>
     </div>
-    <!-- Tylna okładka -->
-    <div class="page back-cover next" id="page4" style="transform: rotateY(-180deg);">
-      <p>
-        Zapraszamy ponownie!<br/>
-        Telefon: <a href="tel:+48780128060" style="color:#aaffaa; text-decoration:none;">780 128 060</a><br/>
-        Email: <a href="mailto:fijakt08d@lo5.bielsko.pl" style="color:#aaffaa; text-decoration:none;">fijakt08d@lo5.bielsko.pl</a>
-      </p>
+    <div class="page contact-page next" id="page4">
+      <h2>Contact</h2>
+      <p>Phone: 780 128 060</p>
+      <p>Email: fijakt08d@lo5.bielsko.pl</p>
+      <p>Thank you for visiting!</p>
     </div>
   </div>
-
-  <div style="text-align:center;">
-    <button class="btn" id="prevBtn" disabled>Poprzednia strona</button>
-    <button class="btn" id="nextBtn">Następna strona</button>
+  <div class="buttons">
+    <button id="prevBtn" disabled>Previous</button>
+    <button id="nextBtn">Next</button>
   </div>
 
   <script>
     const pages = document.querySelectorAll('.page');
     let currentPage = 0;
 
-    const updatePages = () => {
+    function updatePages() {
       pages.forEach((page, i) => {
         if (i === currentPage) {
-          page.classList.add('current');
-          page.classList.remove('next');
-          page.style.transform = 'rotateY(0deg)';
           page.style.zIndex = 2;
-        } else if (i === currentPage + 1) {
-          page.classList.add('next');
-          page.classList.remove('current');
-          page.style.transform = 'rotateY(-180deg)';
-          page.style.zIndex = 1;
+          page.style.transform = 'rotateY(0deg)';
         } else {
-          page.classList.remove('current', 'next');
-          page.style.transform = 'rotateY(-180deg)';
           page.style.zIndex = 0;
+          page.style.transform = 'rotateY(-180deg)';
         }
       });
       document.getElementById('prevBtn').disabled = currentPage === 0;
@@ -239,6 +188,5 @@
 
     updatePages();
   </script>
-
 </body>
 </html>
