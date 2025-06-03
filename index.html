@@ -18,32 +18,27 @@
     .book {
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
       position: relative;
+      display: flex;
+      transition: transform 1s ease;
     }
 
     .page {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 100%;
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 40px;
       text-align: center;
-      transition: left 0.8s ease;
-    }
-
-    .page.active {
-      left: 0;
+      position: relative;
     }
 
     .cover {
-      background-color: #111;
-      background-image: url('images/490975193_9653794848035005_5880450732372020113_n.png');
+      background-color: #000;
+      background-image: url('https://img.freepik.com/premium-zdjecie/czarne-skorzane-tlo-naturalne-ukrycie-tekstury-zblizenie_84485-3142.jpg');
       background-size: cover;
       background-position: center;
       color: #fff;
@@ -51,6 +46,7 @@
       text-shadow: 0 0 10px #000;
       position: relative;
     }
+
     .cover::before {
       content: "";
       position: absolute;
@@ -58,6 +54,7 @@
       background-color: rgba(0, 0, 0, 0.6);
       z-index: 0;
     }
+
     .cover * {
       z-index: 1;
       position: relative;
@@ -113,34 +110,34 @@
   </style>
 </head>
 <body>
-  <div class="book">
-    <div class="page cover active" id="page1">
+  <div class="book" id="book">
+    <div class="page cover">
       <h1>Zelený Baran</h1>
       <p>Restaurant Menu</p>
     </div>
 
-    <div class="page" id="page2" style="background-image: url('https://images.unsplash.com/photo-1604909052966-89abbf02c36b?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
+    <div class="page" style="background-image: url('https://images.unsplash.com/photo-1604909052966-89abbf02c36b?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
       <div class="menu-section">
         <h2>Main Dish</h2>
         <div class="menu-item">Grilled Vegetables <span>25.00 PLN</span></div>
       </div>
     </div>
 
-    <div class="page" id="page3" style="background-image: url('https://images.unsplash.com/photo-1607301402045-f06c6f92e08d?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
+    <div class="page" style="background-image: url('https://images.unsplash.com/photo-1607301402045-f06c6f92e08d?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
       <div class="menu-section">
         <h2>Main Dish</h2>
         <div class="menu-item">Mutton with Grilled Vegetables <span>49.00 PLN</span></div>
       </div>
     </div>
 
-    <div class="page" id="page4" style="background-image: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
+    <div class="page" style="background-image: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
       <div class="menu-section">
         <h2>Main Dish</h2>
         <div class="menu-item">Mutton Kebab <span>42.00 PLN</span></div>
       </div>
     </div>
 
-    <div class="page" id="page5" style="background-image: url('https://images.unsplash.com/photo-1612197528440-9d3ee1cd91f7?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
+    <div class="page" style="background-image: url('https://images.unsplash.com/photo-1612197528440-9d3ee1cd91f7?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
       <div class="menu-section">
         <h2>Soft Drinks</h2>
         <div class="menu-item">Coca-Cola <span>8.00 PLN</span></div>
@@ -150,7 +147,7 @@
       </div>
     </div>
 
-    <div class="page contact-page" id="page6">
+    <div class="page contact-page">
       <h2>Contact</h2>
       <p>Phone: 780 128 060</p>
       <p>Email: fijakt08d@lo5.bielsko.pl</p>
@@ -164,15 +161,13 @@
   </div>
 
   <script>
+    const book = document.getElementById('book');
     const pages = document.querySelectorAll('.page');
     let currentPage = 0;
 
-    function updatePages() {
-      pages.forEach((page, index) => {
-        page.classList.remove('active');
-      });
-      pages[currentPage].classList.add('active');
-
+    function updateBookPosition() {
+      const offset = -currentPage * 100;
+      book.style.transform = `translateX(${offset}vw)`;
       document.getElementById('prevBtn').disabled = currentPage === 0;
       document.getElementById('nextBtn').disabled = currentPage === pages.length - 1;
     }
@@ -180,18 +175,18 @@
     document.getElementById('prevBtn').addEventListener('click', () => {
       if (currentPage > 0) {
         currentPage--;
-        updatePages();
+        updateBookPosition();
       }
     });
 
     document.getElementById('nextBtn').addEventListener('click', () => {
       if (currentPage < pages.length - 1) {
         currentPage++;
-        updatePages();
+        updateBookPosition();
       }
     });
 
-    updatePages();
+    updateBookPosition();
   </script>
 </body>
 </html>
