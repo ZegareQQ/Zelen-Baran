@@ -24,26 +24,36 @@
       box-sizing: border-box;
       padding: 40px;
       gap: 20px;
+      position: relative;
     }
     .page {
       flex: 1;
+    }
+    .divider {
+      width: 4px;
+      background: linear-gradient(to bottom, #d8c3a5, #fdf3e7, #d8c3a5);
+      border-radius: 2px;
+      margin: 0 10px;
     }
     .header {
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 30px;
-      cursor: pointer; /* pokazuje, że można najechać */
+      cursor: pointer;
     }
     .header img {
       height: 80px;
       margin-right: 15px;
+      object-fit: contain;
+      width: 80px;
     }
     .header h1 {
       font-size: 36px;
       color: #7a4e2d;
       margin: 0;
       letter-spacing: 2px;
+      user-select: none;
     }
     .section h2 {
       border-bottom: 2px solid #c9b18a;
@@ -60,12 +70,11 @@
     .item img {
       width: 100px;
       height: 70px;
-      object-fit: contain;
-      background-color: #fff;
-      padding: 5px;
+      object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       margin-right: 20px;
+      user-select: none;
     }
     .item-info {
       display: flex;
@@ -99,7 +108,7 @@
 
     <!-- Left Page: Main Dishes -->
     <div class="page">
-      <div class="header" id="logo-area">
+      <div class="header" id="logo-container">
         <img src="images/baran.png" alt="Logo Zelený Baran" />
         <h1>Zelený Baran</h1>
       </div>
@@ -108,7 +117,7 @@
         <h2>Main Dishes</h2>
 
         <div class="item">
-          <img src="images/grilled.png" alt="Grilled Vegetables" />
+          <img src="images/grilled-vegetables.jpg" alt="Grilled Vegetables" />
           <div class="item-info">
             <div class="item-name">Grilled Vegetables</div>
             <div class="item-price">34 zł</div>
@@ -116,7 +125,7 @@
         </div>
 
         <div class="item">
-          <img src="images/mutton.png" alt="Mutton with Grilled Vegetables" />
+          <img src="images/mutton-vegetables.jpg" alt="Mutton with Grilled Vegetables" />
           <div class="item-info">
             <div class="item-name">Mutton with Grilled Vegetables</div>
             <div class="item-price">46 zł</div>
@@ -124,7 +133,7 @@
         </div>
 
         <div class="item">
-          <img src="images/kebab.png" alt="Kebab with Mutton" />
+          <img src="images/mutton-kebab.jpg" alt="Kebab with Mutton" />
           <div class="item-info">
             <div class="item-name">Kebab with Mutton</div>
             <div class="item-price">40 zł</div>
@@ -141,6 +150,9 @@
         </p>
       </div>
     </div>
+
+    <!-- Divider Line -->
+    <div class="divider"></div>
 
     <!-- Right Page: Drinks -->
     <div class="page">
@@ -175,19 +187,19 @@
 
   </div>
 
-  <audio id="baran-sound" src="images/baran.wav" preload="auto"></audio>
+  <audio id="hover-sound" src="images/baran.wav" preload="auto"></audio>
 
   <script>
-    const logoArea = document.getElementById('logo-area');
-    const sound = document.getElementById('baran-sound');
+    const logoContainer = document.getElementById('logo-container');
+    const hoverSound = document.getElementById('hover-sound');
 
-    logoArea.addEventListener('mouseenter', () => {
-      sound.currentTime = 0;  // start od początku
-      sound.play();
+    logoContainer.addEventListener('mouseenter', () => {
+      hoverSound.currentTime = 0;
+      hoverSound.play();
     });
-    logoArea.addEventListener('mouseleave', () => {
-      sound.pause();
-      sound.currentTime = 0;
+    logoContainer.addEventListener('mouseleave', () => {
+      hoverSound.pause();
+      hoverSound.currentTime = 0;
     });
   </script>
 </body>
