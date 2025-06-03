@@ -12,16 +12,14 @@
       background-color: #000;
       font-family: 'Times New Roman', serif;
       color: white;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     .book {
-      width: 90vw;
-      max-width: 700px;
-      margin: 30px auto;
-      perspective: 2000px;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
       position: relative;
-      height: 480px;
     }
 
     .page {
@@ -29,17 +27,18 @@
       height: 100%;
       position: absolute;
       top: 0;
-      left: 0;
-      border-radius: 12px;
-      transition: transform 1s ease;
-      backface-visibility: hidden;
-      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.8);
+      left: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 40px;
       text-align: center;
+      transition: left 0.8s ease;
+    }
+
+    .page.active {
+      left: 0;
     }
 
     .cover {
@@ -57,22 +56,11 @@
       position: absolute;
       inset: 0;
       background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 12px;
       z-index: 0;
     }
     .cover * {
       z-index: 1;
       position: relative;
-    }
-
-    .page-content {
-      background-color: #222;
-      background-image: url('https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=800&q=80');
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      font-size: 1.3rem;
-      text-shadow: 1px 1px 4px #000;
     }
 
     .menu-section {
@@ -87,6 +75,7 @@
 
     .menu-item {
       margin: 10px 0;
+      font-size: 1.8rem;
     }
 
     .menu-item span {
@@ -100,6 +89,10 @@
     .buttons {
       text-align: center;
       margin-top: 20px;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      z-index: 10;
     }
 
     button {
@@ -121,19 +114,33 @@
 </head>
 <body>
   <div class="book">
-    <div class="page cover current" id="page1">
+    <div class="page cover active" id="page1">
       <h1>Zelený Baran</h1>
       <p>Restaurant Menu</p>
     </div>
-    <div class="page page-content next" id="page2">
+
+    <div class="page" id="page2" style="background-image: url('https://images.unsplash.com/photo-1604909052966-89abbf02c36b?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
       <div class="menu-section">
-        <h2>Main Dishes</h2>
+        <h2>Main Dish</h2>
         <div class="menu-item">Grilled Vegetables <span>25.00 PLN</span></div>
+      </div>
+    </div>
+
+    <div class="page" id="page3" style="background-image: url('https://images.unsplash.com/photo-1607301402045-f06c6f92e08d?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
+      <div class="menu-section">
+        <h2>Main Dish</h2>
         <div class="menu-item">Mutton with Grilled Vegetables <span>49.00 PLN</span></div>
+      </div>
+    </div>
+
+    <div class="page" id="page4" style="background-image: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
+      <div class="menu-section">
+        <h2>Main Dish</h2>
         <div class="menu-item">Mutton Kebab <span>42.00 PLN</span></div>
       </div>
     </div>
-    <div class="page page-content next" id="page3" style="background-image: url('https://images.unsplash.com/photo-1612197528440-9d3ee1cd91f7?auto=format&fit=crop&w=800&q=80');">
+
+    <div class="page" id="page5" style="background-image: url('https://images.unsplash.com/photo-1612197528440-9d3ee1cd91f7?auto=format&fit=crop&w=800&q=80'); background-size: cover; background-position: center;">
       <div class="menu-section">
         <h2>Soft Drinks</h2>
         <div class="menu-item">Coca-Cola <span>8.00 PLN</span></div>
@@ -142,13 +149,15 @@
         <div class="menu-item">Dr Pepper <span>9.00 PLN</span></div>
       </div>
     </div>
-    <div class="page contact-page next" id="page4">
+
+    <div class="page contact-page" id="page6">
       <h2>Contact</h2>
       <p>Phone: 780 128 060</p>
       <p>Email: fijakt08d@lo5.bielsko.pl</p>
       <p>Thank you for visiting!</p>
     </div>
   </div>
+
   <div class="buttons">
     <button id="prevBtn" disabled>Previous</button>
     <button id="nextBtn">Next</button>
@@ -159,15 +168,11 @@
     let currentPage = 0;
 
     function updatePages() {
-      pages.forEach((page, i) => {
-        if (i === currentPage) {
-          page.style.zIndex = 2;
-          page.style.transform = 'rotateY(0deg)';
-        } else {
-          page.style.zIndex = 0;
-          page.style.transform = 'rotateY(-180deg)';
-        }
+      pages.forEach((page, index) => {
+        page.classList.remove('active');
       });
+      pages[currentPage].classList.add('active');
+
       document.getElementById('prevBtn').disabled = currentPage === 0;
       document.getElementById('nextBtn').disabled = currentPage === pages.length - 1;
     }
