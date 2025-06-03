@@ -1,121 +1,101 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Zelený Baran - Menu</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interaktywna książka z obrazkami</title>
+<style>
+  body {
+    background-color: #fdf3e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Georgia', serif;
+    margin: 0;
+  }
+  .book {
+    width: 600px;
+    height: 400px;
+    position: relative;
+    perspective: 2000px;
+  }
+  .page {
+    width: 100%;
+    height: 100%;
+    background-color: #fff8ee;
+    border: 1px solid #d8c3a5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 1s, box-shadow 0.3s, background-color 0.3s;
+    transform-origin: left;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 1;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .page:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    background-color: #fff9f0;
+  }
+  .page.flipped {
+    transform: rotateY(-180deg);
+    z-index: 0;
+  }
+  .page h2, .page h3 {
+    margin-top: 0;
+  }
+  .ornament {
+    display: block;
+    margin: 10px 0 20px 0;
+    max-width: 120px;
+    border: 2px solid #d8c3a5;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+  .decorative-line {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #d8c3a5, #fdf3e7, #d8c3a5);
+    margin: 20px 0;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
 
-    body {
-      margin: 0;
-      background-color: #111;
-      font-family: 'Times New Roman', serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+<div class="book">
+  <div class="page" id="page1">
+    <h2>Strona 1</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Crystal_Project_flower.png/120px-Crystal_Project_flower.png" alt="Ornament 1" class="ornament" />
+    <p>Witaj w interaktywnej książce z ozdobnikami! Kliknij, aby przewrócić stronę.</p>
+    <div class="decorative-line"></div>
+  </div>
+  <div class="page" id="page2" style="z-index: 0;">
+    <h2>Strona 2</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Crystal_Project_star.png/120px-Crystal_Project_star.png" alt="Ornament 2" class="ornament" />
+    <p>To jest druga strona z dekoracyjnym obrazkiem. Kliknij, aby wrócić.</p>
+    <div class="decorative-line"></div>
+  </div>
+</div>
 
-    .book {
-      width: 90vw;
-      height: 90vh;
-      perspective: 2000px;
-      position: relative;
-    }
+<script>
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
 
-    .page {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      transform-origin: left;
-      transition: transform 1s;
-      backface-visibility: hidden;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      background-color: white;
-      border: 8px solid #000;
-      box-sizing: border-box;
-    }
+  page1.addEventListener('click', () => {
+    page1.classList.add('flipped');
+    page2.style.zIndex = 1;
+  });
 
-    /* Okładka czarna skóra cielęca (tekstura) */
-    .page:nth-child(1) {
-      background-image: url('https://cdn.pixabay.com/photo/2016/04/22/22/44/leather-1341204_1280.jpg');
-      background-size: cover;
-      background-position: center;
-      color: gold;
-      font-family: 'Great Vibes', cursive;
-      font-size: 4rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-color: goldenrod;
-      box-shadow: 0 0 20px goldenrod;
-      z-index: 6;
-      text-shadow: 2px 2px 4px #000000aa;
-    }
+  page2.addEventListener('click', () => {
+    page1.classList.remove('flipped');
+    page2.style.zIndex = 0;
+  });
+</script>
 
-    .page-content {
-      position: relative;
-      z-index: 1;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      box-sizing: border-box;
-      text-align: center;
-    }
-
-    .page h1, .page h2 {
-      margin: 10px 0;
-    }
-
-    .page p {
-      font-size: 1.6rem;
-    }
-
-    .page img.bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    .menu-item {
-      font-size: 2rem;
-      margin: 10px 0;
-    }
-
-    .menu-item span {
-      display: block;
-      font-size: 1.5rem;
-      opacity: 0.8;
-      margin-top: 0.2rem;
-    }
-
-    .flipped {
-      transform: rotateY(-180deg);
-      z-index: 0 !important;
-    }
-
-    .page:nth-child(2) { z-index: 5; }
-    .page:nth-child(3) { z-index: 4; }
-    .page:nth-child(4) { z-index: 3; }
-    .page:nth-child(5) { z-index: 2; }
-    .page:nth-child(6) { z-index: 1; }
-
-    .buttons {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
+</body>
+</html>
