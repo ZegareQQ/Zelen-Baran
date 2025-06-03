@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      background-color: #000000; /* czarne tło */
+      background-color: #000000;
       font-family: 'Georgia', serif;
       display: flex;
       justify-content: center;
@@ -15,13 +15,18 @@
       margin: 0;
     }
     .book {
-      width: 700px;
-      padding: 40px;
-      background: #fff8ee; /* kolor książki jak poprzednio */
+      width: 1400px; /* szerzej dla dwóch stron */
+      display: flex;
+      background: #fff8ee;
       border: 10px solid #c9b18a;
       border-radius: 20px;
       box-shadow: 0 0 30px rgba(0,0,0,0.2);
       box-sizing: border-box;
+      padding: 40px;
+      gap: 20px;
+    }
+    .page {
+      flex: 1;
     }
     .header {
       display: flex;
@@ -88,48 +93,83 @@
 </head>
 <body>
   <div class="book">
-    <div class="header">
-      <img src="images/baran.png" alt="Logo Zelený Baran" />
-      <h1>Zelený Baran</h1>
-    </div>
 
-    <div class="section">
-      <h2>Main Dishes</h2>
+    <!-- Left Page: Main Dishes -->
+    <div class="page">
+      <div class="header">
+        <img src="images/baran.png" alt="Logo Zelený Baran" />
+        <h1>Zelený Baran</h1>
+      </div>
 
-      <div class="item">
-        <img src="images/grilled.png" alt="Grilled Vegetables" />
-        <div class="item-info">
-          <div class="item-name">Grilled Vegetables</div>
-          <div class="item-price">34 zł</div>
+      <div class="section">
+        <h2>Main Dishes</h2>
+
+        <div class="item">
+          <img src="images/grilled.png" alt="Grilled Vegetables" />
+          <div class="item-info">
+            <div class="item-name">Grilled Vegetables</div>
+            <div class="item-price">34 zł</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="images/mutton.png" alt="Mutton with Grilled Vegetables" />
+          <div class="item-info">
+            <div class="item-name">Mutton with Grilled Vegetables</div>
+            <div class="item-price">46 zł</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="images/kebab.png" alt="Kebab with Mutton" />
+          <div class="item-info">
+            <div class="item-name">Kebab with Mutton</div>
+            <div class="item-price">40 zł</div>
+          </div>
         </div>
       </div>
 
-      <div class="item">
-        <img src="images/mutton.png" alt="Mutton with Grilled Vegetables" />
-        <div class="item-info">
-          <div class="item-name">Mutton with Grilled Vegetables</div>
-          <div class="item-price">46 zł</div>
-        </div>
+      <div class="award">
+        <p>
+          <strong>Dawid Domagalski</strong> – the undisputed sales master at Zelený Baran!<br />
+          So good that other companies fight over him like the last kebab on the plate.<br />
+          Official holder of the certificate <em>"Crazy Kebab Salesman 2024"</em>.<br />
+          Best salesperson and the most crafty cook in town – and the backup chef, just in case the main one gets food poisoning! 🙂
+        </p>
       </div>
+    </div>
 
-      <div class="item">
-        <img src="images/kebab.png" alt="Kebab with Mutton" />
-        <div class="item-info">
-          <div class="item-name">Kebab with Mutton</div>
-          <div class="item-price">40 zł</div>
+    <!-- Right Page: Drinks -->
+    <div class="page">
+      <div class="section">
+        <h2>Drinks</h2>
+
+        <div class="item">
+          <img src="images/coke.jpg" alt="Coca-Cola" />
+          <div class="item-info">
+            <div class="item-name">Coca-Cola</div>
+            <div class="item-price">15 zł</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="images/drpepper.jpg" alt="Dr Pepper" />
+          <div class="item-info">
+            <div class="item-name">Dr Pepper</div>
+            <div class="item-price">15 zł</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="images/kefir.jpg" alt="Kefir" />
+          <div class="item-info">
+            <div class="item-name">Kefir</div>
+            <div class="item-price">10 zł</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="award">
-      <p>
-        <strong>Dawid Domagalski</strong> – the undisputed sales master at Zelený Baran!<br />
-So good that other companies fight over him like the last kebab on the plate.<br />
-Official holder of the certificate <em>"Crazy Kebab Salesman 2024"</em>.<br />
-Best salesperson and the most crafty cook in town – and the backup chef, 
-just in case the main one gets food poisoning! 🙂
-      </p>
-    </div>
   </div>
 </body>
 </html>
