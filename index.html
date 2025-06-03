@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Zelený Baran - Menu</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Times+New+Roman&display=swap');
 
     body {
       margin: 0;
@@ -33,8 +31,56 @@
       transition: transform 1s;
       backface-visibility: hidden;
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      background-color: #fdf6e3; /* jasne, ciepłe tło dla stron z menu */
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      box-sizing: border-box;
+      text-align: center;
     }
 
+    /* OKŁADKA - pierwsza strona */
+    .page:nth-child(1) {
+      background-image: url('https://img.freepik.com/premium-photo/black-leather-texture-natural-hide-closeup_1373-224.jpg?w=900');
+      background-size: cover;
+      background-position: center;
+      color: gold;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      font-weight: 700;
+      text-shadow: 1px 1px 5px #b8860b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      letter-spacing: 0.1em;
+      z-index: 6;
+      border-radius: 20px;
+    }
+
+    /* Układ tekstu na okładce */
+    .page:nth-child(1) .page-content {
+      background: transparent;
+      color: gold;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      text-shadow: 1px 1px 5px #b8860b;
+      letter-spacing: 0.1em;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Tekst w okładce wyśrodkowany */
+    .page:nth-child(1) h1 {
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    /* reszta stron z tłem i zdjęciami */
     .page img.bg {
       position: absolute;
       top: 0;
@@ -43,7 +89,8 @@
       height: 100%;
       object-fit: cover;
       z-index: 0;
-      opacity: 0.5;
+      opacity: 0.6;
+      border-radius: 10px;
     }
 
     .page-content {
@@ -60,24 +107,34 @@
       padding: 40px;
       box-sizing: border-box;
       text-align: center;
+      border-radius: 10px;
     }
 
-    .page h1, .page h2 {
+    /* nagłówki */
+    .page h2 {
+      margin: 10px 0 20px;
+      font-size: 2.5rem;
+      font-family: 'Times New Roman', serif;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    /* pozycje menu i cena z odstępem */
+    .menu-item {
+      font-size: 2rem;
       margin: 10px 0;
+      font-family: 'Times New Roman', serif;
     }
 
-    .page p {
-      font-size: 1.6rem;
+    /* DODANA SPACJA przed ceną */
+    .menu-item span {
+      display: block;
+      font-size: 1.5rem;
+      opacity: 0.8;
+      margin-top: 5px; /* trochę odstępu między nazwą a ceną */
     }
 
-    .page:nth-child(1) {
-      background-image: url('https://img.freepik.com/premium-zdjecie/czarne-skorzane-tlo-naturalne-ukrycie-tekstury-zblizenie_84485-3142.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      z-index: 6;
-    }
-
+    /* Obrót stron */
     .flipped {
       transform: rotateY(-180deg);
       z-index: 0 !important;
@@ -89,6 +146,7 @@
     .page:nth-child(5) { z-index: 2; }
     .page:nth-child(6) { z-index: 1; }
 
+    /* Przyciski */
     .buttons {
       position: absolute;
       bottom: 10px;
@@ -107,26 +165,19 @@
       color: white;
       cursor: pointer;
       font-family: 'Times New Roman', serif;
+      transition: background-color 0.3s ease;
     }
-
-    .menu-item {
-      font-size: 2rem;
-      margin: 10px 0;
-    }
-
-    .menu-item span {
-      display: block;
-      font-size: 1.5rem;
-      opacity: 0.8;
+    .buttons button:hover {
+      background-color: forestgreen;
     }
   </style>
 </head>
+
 <body>
   <div class="book" id="book">
     <div class="page">
       <div class="page-content">
-        <h1>Zelený Baran</h1>
-        <p>Restaurant Menu</p>
+        <h1>Zelený Baran - Menu</h1>
       </div>
     </div>
 
@@ -211,4 +262,3 @@
     updatePages();
   </script>
 </body>
-</html>
